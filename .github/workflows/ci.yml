@@ -16,3 +16,9 @@ jobs:
           echo "CI Started"
           test -f index.html && echo "File exists"
           echo "CI Successful"
+
+      - name: Slack Notification
+        run: |
+          curl -X POST -H 'Content-type: application/json' \
+          --data '{"text":"Build Successful"}' \
+          ${{ secrets.SLACK_WEBHOOK_URL }}
